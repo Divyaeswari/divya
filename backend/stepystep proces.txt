@@ -1,0 +1,32 @@
+Create Folder NodeReactProject.
+
+REACT==========================================================================================================================================================================
+Open in VS Code and Terminal Create ReactApp usin this command npx create-react-app frontend
+    I got error ENOENT: no such file or directory, lstat 'C:\Users\Exam\AppData\Roaming\npm', searched in net and to solve run this command: npm install npm -g
+        after react app installed.
+    Once the app is ready, you'll need to install react-router to help set up page routing. You can do this by running the following commands:
+        In frontend Run this command:npm i react-router-dom
+        
+NODE==========================================================================================================================================================================
+Create folder named backend for node.js code and run below commands.
+    npm init
+    npm install express cors
+    npm install nodemon --save-dev
+    add a start script in the package.json file to start the server.
+    "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+}
+
+So we installed:
+
+express – The web application framework for Node.js that we will use to create the backend application.
+cors – CORS (Cross-Origin Resource Sharing) is a browser security feature that restricts cross-origin HTTP requests with other servers and specifies which domains access your resources. We will use this Node.js package to allow cross-origin requests.
+nodemon – A utility that will monitor for any changes in your source and automatically restart your server if any changes are detected.
+
+npm i bcrypt jsonwebtoken lowdb
+cd ../frontend
+
+npm install sequelize
+npm install mysql2
+npm install dotenv
