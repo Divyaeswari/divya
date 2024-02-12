@@ -61,7 +61,7 @@ const Login = (props) => {
         <input className={"inputButton"} type="button" onClick={onButtonClick} value={"Login"} />
         </div>
         <div className="inputContainer">
-        <a href="#" id="signup">Don't have account yet?</a>
+        <a href="/register" id="signup">Don't have account yet?</a>
         </div>
         </div>
         </div>

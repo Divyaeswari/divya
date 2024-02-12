@@ -89,9 +89,34 @@
   text-align: center;
 }
 
+#login {
+  color: cornflowerblue;
+  font-weight: bold;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  margin-top: 16px;
+  text-align: center;
+}
+
 .underline_title {
   background: linear-gradient(89.8deg, rgb(39, 115, 255) 4.3%, rgb(62, 211, 232) 101.4%);;
   height: 2px;
   margin: -1.1rem auto 0 auto;
   width: 220px;
+}
+
+.card_regis {
+  background: #fbfbfb;
+  border-radius: 8px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+  height: 600px;
+  margin: 6rem auto 8.1rem auto;
+  width: 440px;
+}
+
+.underline_title_regis {
+  background: linear-gradient(89.8deg, rgb(39, 115, 255) 4.3%, rgb(62, 211, 232) 101.4%);;
+  height: 2px;
+  margin: -1.1rem auto 0 auto;
+  width: 290px;
 }

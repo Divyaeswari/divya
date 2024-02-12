@@ -6,6 +6,9 @@ dotenv.config();
 //     host: process.env.MYSQL_HOST,
 //     dialect: "mysql"
 // });
+//RENAME DATABASE nodereactproject TO reactregisterlogin;
+// ALTER DATABASE nodereactproject MODIFY NAME = reactregisterlogin
+
 
 
 const db = new Sequelize('reactregisterlogin','root','root',{
@@ -15,3 +18,5 @@ const db = new Sequelize('reactregisterlogin','root','root',{
 
 console.log(process.env.MYSQL_DB);
 export default db;
+
+   
