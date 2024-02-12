@@ -1,35 +1,29 @@
-import express from "express";
-import cors from "cors";
-import db from "./config/database.js";
-import router from "./routes/registerRoute.js";
-import test from "./modules/register/registerController.js"
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import db from './config/database.js';
+import router from './routes/mainRoute.js';
+import registerRouter from './modules/register/registerRoutes.js';
 
-//dotenv.config(); 
 const app = express();
 
+// Body parsing middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-
-// Sequelize Connection
-//  db.authenticate().then(() => {
-//    console.log('Connection has been established successfully.');
-// }).catch((error) => {
-//    console.error('Unable to connect to the database: ', error);
-// });
-
-app.use(router);
+// CORS middleware
 app.use(cors());
 
-var corsOptions = {
-    origin: "http://localhost:3000",
-    credentials:true
-};
+//Database connection
+db.authenticate().then(() => {
+   console.log('Connection has been established successfully.');
+}).catch((error) => {
+   console.error('Unable to connect to the database: ', error);
+});
 
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Use routers
+app.use(router);
+app.use(registerRouter);
 
-// const PORT = process.env.API_BACKEND_PORT || 5000;
 const PORT = 5000;
-app.listen(PORT, ()=> console.log('http://localhost:3000  FrontEnd Link'));
+app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));

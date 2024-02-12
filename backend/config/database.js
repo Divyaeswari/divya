@@ -12,7 +12,7 @@ dotenv.config();
 
 
 const db = new Sequelize('reactregisterlogin','root','root',{
-    host: "127.0.0.1:3000",
+    host: "localhost",
     dialect: "mysql",
 });
 

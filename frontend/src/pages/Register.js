@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 //import RegisterDB from "../../../backend/models/RegisterModel";
 
 const Register = (props) => {
@@ -17,14 +19,14 @@ const Register = (props) => {
     const navigate =  useNavigate();
 
     const onButtonClick = async () => {
-        const api = await fetch('http://localhost:5000/register');
-        console.log(api);
+        // const api = await fetch('http://localhost:5000/register',{ method: "GET", mode: 'cors', headers: { 'Content-Type': 'application/json',}});
+        // console.log(api);
 
         setNameError("")
         setEmailError("")
+        setPhoneNumberError("")
         setPasswordError("")
         setrepeatPassword("")
-        setPhoneNumberError("")
 
 
         // Check if the user has entered both fields correctly
@@ -78,46 +80,42 @@ const Register = (props) => {
             return
         }
 
-        // try {
-        //     // Check if the email or phone number already exists in the database
-        //     const existingUser = await RegisterDB.findOne({
-        //         where: {
-        //             $or: [
-        //                 { email: email },
-        //                 { phoneno: phoneNumber }
-        //             ]
-        //         }
-        //     });
+        
 
-        //     if (existingUser) {
-        //         // If email or phone number already exists, show error message
-        //         if (existingUser.email === email) {
-        //             setEmailError("Email already exists");
-        //         }
-        //         if (existingUser.phoneno === phoneNumber) {
-        //             setPhoneNumberError("Phone number already exists");
-        //         }
-        //         return; // Do not proceed with registration
-        //     }
+            const userData = {
+                username: name,
+                email: email,
+                password: password,
+                phoneno: phoneNumber
+            };  
+        
+            try {
+                const response = await fetch('http://localhost:5000/registerUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+        
+                if (response.ok) {
+                    withReactContent(Swal).fire({
+                        icon: 'Message',
+						text: 'Message!',
+						title: response.message,           
+                      })
+                    navigate("/main_page");
+                } else {
+                    // Handle error response
+                    const data = await response.json();
+                    console.error('Registration failed:', data.error);
+                }
+            } catch (error) {
+                console.error('Error registering user:', error);
+                // Handle network errors or other issues
+            }
 
-        //     // Create a new record in the Register table
-        //     const newRegistration = await RegisterDB.create({
-        //         username: name,
-        //         email: email,
-        //         password: password,
-        //         phoneno: phoneNumber,
-        //     });
-
-        //     console.log('Registration successful:', newRegistration);
-
-        //     // Redirect the user to the main page or perform any other action
-        //     navigate("/main_page");
-        // } catch (error) {
-        //     console.error('Error registering user:', error);
-        //     // Handle errors appropriately
-        // }
-
-    }
+    };
 
     return <div className="mainContainer">
         <div className="card_regis">

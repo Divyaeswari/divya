@@ -1,35 +1,44 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database.js";
+
 const { DataTypes } = Sequelize;
 
-const RegisterDB = db.define('register',{
-    id:{
-        autoIncrement:true,
-        primaryKey:true,
-        type:DataTypes.INTEGER,
+const RegisterDB = db.define('register', {
+    id: {
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
     },
-    username:{
+    username: {
         type: DataTypes.STRING
     },
-    email:{
-        type: DataTypes.VARCHAR(100)
+    email: {
+        type: DataTypes.STRING
     },
-    password:{
-        type: DataTypes.VARCHAR(20)
+    password: {
+        type: DataTypes.STRING
     },
-    phoneno:{
-        type: DataTypes.INTEGER
+    phoneno: {
+        type: DataTypes.STRING
     },
-    created:{
-        type: DataTypes.NOW
+    created: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.NOW
     },
-    last_login:{
-        type: DataTypes.NOW
-    },
-   
-},{
-    freezeTableName:true,
+    last_login: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.NOW
+    }
+}, {
+    freezeTableName: true,
     timestamps: false
 });
+
+// db.sync().then(() => {
+//    console.log('Book table created successfully!');
+// }).catch((error) => {
+//    console.error('Unable to create table : ', error);
+// });
+
 
 export default RegisterDB;
