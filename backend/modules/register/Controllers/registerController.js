@@ -49,10 +49,9 @@ export const registerUser = async (req, res) => {
         console.log('Registration successful:', newRegistration);
 
         // Send a success response
-        res.status(200).json({ message: 'Registration successfully Done!' });
+        res.status(200).json({ success: 'Registration successfully Done!' });
     } catch (error) {
         console.error('Error registering user:', error);
-        console.log('existingUser');
         // Send an error response
         res.status(500).json({ error: 'Internal server error' });
     }

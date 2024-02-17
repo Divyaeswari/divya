@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* height: 100vh; */
+  height: 115vh;
 }
 
 .titleContainer {
@@ -27,6 +27,8 @@
   /* flex-direction: column; */
   align-items: flex-start;
   justify-content: center;
+  margin: 0px;
+  position:relative;
 }
 
 .inputContainer > .errorLabel {
@@ -75,7 +77,42 @@
   padding-bottom: 23px;
   padding-top: 13px;
   text-align: center;
+  /* background: -webkit-linear-gradient(#eee, #333); */
+  background: linear-gradient(89.8deg, rgb(39, 115, 255) 4.3%, rgb(62, 211, 232) 101.4%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text 2s steps(15) infinite alternate;
 }
+
+#card_title
+{
+  font-family: "Raleway Thin", sans-serif;
+  letter-spacing: 4px;
+  padding-bottom: 23px;
+  padding-top: 13px;
+  text-align: center;
+  font-size: 25px !important;
+  /* background: -webkit-linear-gradient(#eee, #333); */
+  background: linear-gradient(89.8deg, rgb(39, 115, 255) 4.3%, rgb(62, 211, 232) 101.4%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text 2s steps(15) infinite alternate;
+}
+
+@keyframes text{
+  0%{
+    width: 0ch;
+    
+  }
+  50%{
+    width:15ch;
+    /* color:rgb(218, 55, 5); */
+    background: linear-gradient(108.7deg, rgb(34, 219, 231) -0.9%, rgb(52, 118, 246) 88.7%);
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+}
+
 .card_content
 {
   padding: 12px 21px;
@@ -109,7 +146,7 @@
   background: #fbfbfb;
   border-radius: 8px;
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
-  height: 600px;
+  height: 630px;
   margin: 6rem auto 8.1rem auto;
   width: 440px;
 }

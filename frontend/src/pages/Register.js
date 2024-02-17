@@ -100,11 +100,10 @@ const Register = (props) => {
         
                 if (response.ok) {
                     withReactContent(Swal).fire({
-                        icon: 'Message',
 						text: 'Message!',
 						title: response.message,           
                       })
-                    navigate("/main_page");
+                    navigate("/login");
                 } else {
                     // Handle error response
                     const data = await response.json();
@@ -126,27 +125,32 @@ const Register = (props) => {
         </div>
         <br/>
         <div className="inputContainer">
-            <input  value={name} placeholder="Enter Your Name Here" onChange={ev => setName(ev.target.value)} className={"inputBox"} />
+            <input  value={name} id="myInput" placeholder="Enter Your Name Here" onChange={ev => setName(ev.target.value)} className={"inputBox"} />
+            <label id="myInput-label">Enter Your Name Here</label>
             <label className="errorLabel">{nameError}</label>
         </div>
         <br/>
         <div className="inputContainer">
-            <input  value={email} placeholder="Enter Your Email Here" onChange={ev => setEmail(ev.target.value)} className={"inputBox"} />
+            <input  value={email} id="myInput" placeholder="Enter Your Email Here" onChange={ev => setEmail(ev.target.value)} className={"inputBox"} />
+            <label id="myInput-label">Enter Your Email Here</label>
             <label className="errorLabel">{emailError}</label>
         </div>
         <br/>
         <div className="inputContainer">
-            <input  value={phoneNumber} placeholder="Enter Your Phone Number Here" onChange={ev => setPhoneNumber(ev.target.value)} className={"inputBox"} />
+            <input  value={phoneNumber} id="myInput" placeholder="Enter Your Phone Number Here" onChange={ev => setPhoneNumber(ev.target.value)} className={"inputBox"} />
+            <label id="myInput-label">Enter Your Phone Number Here</label>
             <label className="errorLabel">{phoneNumberError}</label>
         </div>
         <br/>
         <div className="inputContainer">
-            <input  value={password} placeholder="Enter Your Password Here" onChange={ev => setPassword(ev.target.value)} className={"inputBox"} />
+            <input  value={password} id="myInput" placeholder="Enter Your Password Here" onChange={ev => setPassword(ev.target.value)} className={"inputBox"} />
+            <label id="myInput-label">Enter Your Password Here</label>
             <label className="errorLabel">{passwordError}</label>
         </div>
         <br/>
         <div className="inputContainer">
-            <input  value={repeatPassword} placeholder="Repeat The Password Here" onChange={ev => setrepeatPassword(ev.target.value)} className={"inputBox"} />
+            <input  value={repeatPassword} id="myInput" placeholder="Repeat The Password Here" onChange={ev => setrepeatPassword(ev.target.value)} className={"inputBox"} />
+            <label id="myInput-label">Repeat The Password Here</label>
             <label className="errorLabel">{repeatPasswordError}</label>
         </div>
         <br/>

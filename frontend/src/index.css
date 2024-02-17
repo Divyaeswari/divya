@@ -37,3 +37,35 @@ input[type="button"] {
     border-radius: 8px;
     cursor: pointer;
 }
+
+#myInput:focus::-webkit-input-placeholder {
+  visibility:hidden; /*hide placeholder on focus*/
+}
+
+#myInput {
+  padding: 5px;
+}
+
+#myInput:focus {
+  border: 1px solid dodgerblue;
+  border-radius:3px;
+}
+
+#myInput-label {
+  display: none;
+  font-size:11px;
+  color:dodgerblue;
+  font-family:sans-serif;
+  background-color: #fff;
+  padding: 0 3px;
+}
+
+
+
+/*style of label when input is focused*/
+#myInput:focus + #myInput-label  {
+  display: inline-block;
+  position:absolute;
+  left: 12px;
+  top:-5px;
+}

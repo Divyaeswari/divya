@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom"
 
 const MainPage = (props) =>{
 
+
     return <div className="mainContainer">
         <div className={"titlecontainer"}>
             <div>Welcome!</div>
