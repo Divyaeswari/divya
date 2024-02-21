@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 115vh;
+  height: 105vh;
 }
 
 .titleContainer {
@@ -157,3 +157,44 @@
   margin: -1.1rem auto 0 auto;
   width: 290px;
 }
+
+.menu-container {
+  display: flex; /* Make the menu items display horizontally */
+  background-color: #0000ff;
+  height: 62px;
+  padding:20px;
+  justify-content: right;
+  align-items: center; 
+}
+
+.menu-item {
+  margin-right: 10px;
+}
+
+.menu-item:last-child {
+  margin-right: 0; /* Remove margin-right for the last menu item */
+}
+
+#menu_title
+{
+  font-size: 22px;
+  text-decoration: none;
+  margin-left:10px;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color:#fff;
+}
+
+.menu-item a:hover {
+  color: #6495ED;
+}
+
+.menu-item a:active {
+  color: blue;
+}
+/* .menu-item a:visited {
+  color: green;
+} */
+

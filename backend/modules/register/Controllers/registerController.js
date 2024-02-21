@@ -2,6 +2,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import sequelize from "sequelize";
+import bcrypt from 'bcrypt';
+
 const { json } = bodyParser;
 const app = express();
 app.use(json());
@@ -19,7 +21,9 @@ export const registerUser = async (req, res) => {
     console.log(req.body);
 
     try {
-        console.log('existingUser123');
+        // console.log('existingUser123');
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         // Check if the email or phone number already exists in the database
         const existingUser = await RegisterDB.findOne({
             where: {
@@ -41,7 +45,7 @@ export const registerUser = async (req, res) => {
         const newRegistration = await RegisterDB.create({
             username: username,
             email: email,
-            password: password,
+            password: hashedPassword,
             phoneno: phoneno,
         }); 
         console.log(newRegistration.toJSON());

@@ -5,6 +5,8 @@ import RegisterPage from "./pages/Register";
 import MainPage from "./pages/MainPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Header from "./pages/commonHeader";
+import Logout from "./pages/Logout";
 //import ResetPassword
 import './App.css';
 import { useEffect,useState } from "react";
@@ -21,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      {/* <Header isAuthenticated={loggedIn} setLoggedIn={setLoggedIn} setEmail={setEmail} /> */}
       <Routes>
         <Route path="/"  element={<Home email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
@@ -28,6 +31,7 @@ function App() {
         <Route path="/main_page" element={<MainPage mainPage={mainPage} setMainPage={setMainPage} />} />
         <Route path="/forgot_password" element={<ForgotPassword forgotPassword={forgotPassword} setForgotPassword={setForgotPassword} />} />
         <Route path="/reset_password" element={<ResetPassword resetPassword={resetPassword} setResetPassword={setResetPassword} />} /> 
+        <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} setEmail={setEmail} />} /> 
       </Routes>
       </BrowserRouter>
     </div>

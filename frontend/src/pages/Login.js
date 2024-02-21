@@ -2,14 +2,23 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import Header from './commonHeader';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+
+    const isAuthenticated = false;
 
     const navigate =  useNavigate();
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const onButtonClick = async () => {
 
@@ -57,6 +66,21 @@ const Login = (props) => {
             console.log(response)
     
             if (response.ok) {
+
+                props.setLoggedIn(true);
+                props.setEmail(email);
+                const dataSess = await response.json();
+
+                //localStorage.setItem('user', JSON.stringify(dataSess.user));    
+                console.log(dataSess.user);
+
+               // const data = await response.json();
+                const token = dataSess.token;
+                console.log(token);
+    
+                // Store token in localStorage
+                localStorage.setItem('token', JSON.stringify(token));
+
                 if(response.status == 200)
                 
                 withReactContent(Swal).fire({
@@ -100,7 +124,10 @@ const Login = (props) => {
 
     };
 
-    return <div className="mainContainer">
+    return (
+        <div>
+        <Header isAuthenticated={isAuthenticated} />
+        <div className="mainContainer">
         <div className="card">
         <div className="card_content">
         <div className="titleContainer">
@@ -115,7 +142,8 @@ const Login = (props) => {
         </div>
         <br/>
         <div className="inputContainer">
-            <input  value={password} id="myInput" type="password" placeholder="Enter Your Password Here" onChange={ev => setPassword(ev.target.value)} className={"inputBox passwordInput"} />
+            <input  value={password} id="myInput" type={showPassword ? "text" : "password"} placeholder="Enter Your Password Here" onChange={ev => setPassword(ev.target.value)} className={"inputBox passwordInput"} />
+            <i className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-icon`} onClick={togglePasswordVisibility} />
             <label id="myInput-label">Enter Your Password Here</label>
             <label className="errorLabel">{passwordError}</label>
         </div>
@@ -133,6 +161,8 @@ const Login = (props) => {
         </div>
         </div>
     </div>
+    </div>
+    )
 }
 
 export default Login

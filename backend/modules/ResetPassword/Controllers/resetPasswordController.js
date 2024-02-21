@@ -14,35 +14,39 @@ app.use(json());
 
 export const ResetPassword = async (req, res) => {
 
-let users = [
-    { email: 'user1@example.com', otp: '', password: 'user1password' },
-    { email: 'user2@example.com', otp: '', password: 'user2password' }
-];
+    const { email, otp, password } = req.body;
 
-// Route to handle password reset
-app.post('/resetPassword', (req, res) => {
-    const { email, otp, newPassword } = req.body;
+    try {
+        // Retrieve OTP details from the database
+        const otpDetails = await OTPLogs.findOne({
+            where: { email: email,otp: otp }
+        });
 
-    // Find the user by email
-    const user = users.find(user => user.email === email);
+        if (!otpDetails) {
+            // If no OTP details found, it means OTP hasn't been generated or has expired
+            return res.status(400).json({ error: 'OTP not found or expired' });
+        }
 
-    if (!user) {
-        return res.status(404).json({ error: 'User not found' });
+        // Check if the OTP has expired
+        const otpGenerationTime = otpDetails.save_date.getTime();
+        const currentTime = new Date().getTime();
+        const otpValidityDuration = 60 * 1000; // 60 seconds validity
+        const otpAge = currentTime - otpGenerationTime;
+
+        if (otpAge > otpValidityDuration) {
+            // If the OTP has expired
+            return res.status(401).json({ error: 'OTP expired' });
+        }
+        else{
+            const updatedPassword = await RegisterDB.update(
+                { password: password},
+                { where: { email: email } }
+            );
+            return res.status(200).json({ success: 'Password reset successful' });
+        }
+        
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
-
-    // Check if the OTP matches
-    if (otp !== user.otp) {
-        return res.status(400).json({ error: 'Invalid OTP' });
-    }
-
-    // Reset password
-    user.password = newPassword;
-
-    // Clear OTP
-    user.otp = '';
-
-    // Send success response
-    res.status(200).json({ message: 'Password reset successfully' });
-});
-
 };

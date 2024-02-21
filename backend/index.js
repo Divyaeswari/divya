@@ -25,5 +25,4 @@ db.authenticate().then(() => {
 app.use(router);
 app.use(registerRouter);
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
+app.listen(process.env.DEV_PORT, () => console.log(`Server is running on http://localhost:${process.env.DEV_PORT}`));

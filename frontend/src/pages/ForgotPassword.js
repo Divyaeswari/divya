@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useNavigate } from "react-router-dom";
+import Header from './commonHeader';
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
     const navigate =  useNavigate();
+
+    const isAuthenticated = false;
 
     const sendOTP = async () => {
         setEmailError("");
@@ -41,14 +44,19 @@ const ForgotPassword = () => {
             if (response.ok) {
                 if(response.status == 200)
                 {
+                    
                     withReactContent(Swal).fire({
                         title: 'Success!',
                         text: 'An OTP has been sent to your email address.',           
                     }).then(function() {
+                        localStorage.setItem('resetPasswordEmail', email);
                         navigate("/reset_password");
                   });
                 }
-                else if(response.status == 400)
+            }
+            else if(!response.ok)
+            {
+                if(response.status == 400)
                 {
                     withReactContent(Swal).fire({
                         title: 'Alert!',
@@ -62,7 +70,8 @@ const ForgotPassword = () => {
                         text: 'Error sending email, Failed to send OTP.'         
                     });
                 }
-        }
+            }
+
         } catch (error) {
             console.error('Error sending OTP:', error);
             // Handle network errors or other issues
@@ -70,6 +79,8 @@ const ForgotPassword = () => {
     };
 
     return (
+        <div>
+        <Header isAuthenticated={isAuthenticated} />
         <div className="mainContainer">
             <div className="card">
                 <div className="card_content">
@@ -90,6 +101,7 @@ const ForgotPassword = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

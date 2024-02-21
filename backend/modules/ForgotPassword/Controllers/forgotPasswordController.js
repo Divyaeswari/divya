@@ -14,6 +14,7 @@ export const ForgotPassword = async (req, res) => {
     const { email } = req.body;
 
     try {
+        const currentDate = new Date();
 
         const checkEmailExists = await RegisterDB.findOne({
             where: { email: email }
@@ -70,13 +71,28 @@ export const ForgotPassword = async (req, res) => {
                 }
             });
 
-            const saveOTPLogs = await OTPLogs.create({
-                email: email,
-                otp: otp,
-            }); 
-            console.log(saveOTPLogs.toJSON());
-    
-            console.log('OTP Logs Saved successfully:', saveOTPLogs);
+            const checkOTPLogs = await OTPLogs.findOne({
+                where: { email: email }
+            });
+
+            if(!checkOTPLogs)
+            {
+                const saveOTPLogs = await OTPLogs.create({
+                    email: email,
+                    otp: otp,
+                    save_date: currentDate,
+                }); 
+                console.log(saveOTPLogs.toJSON());
+        
+                console.log('OTP Logs Saved successfully:', saveOTPLogs);
+            }
+            else{
+                const updatedOTPLogs = await OTPLogs.update(
+                    { otp: otp, save_date: currentDate},
+                    { where: { email: email } }
+                );
+                console.log('OTP Logs Updated successfully:', updatedOTPLogs);
+            }
     
             // Send a success response
            // res.status(200).json({ success: 'Registration successfully Done!' });

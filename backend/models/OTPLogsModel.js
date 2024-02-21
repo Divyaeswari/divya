@@ -15,18 +15,39 @@ const OTPLogs = db.define('otp_logs', {
     otp: {
         type: DataTypes.STRING
     },
-    created: {
-        type: DataTypes.DATE,
-        defaultValue: Sequelize.NOW
-    },
-    last_login: {
-        type: DataTypes.DATE,
-        defaultValue: Sequelize.NOW
-    }
+    save_date: {
+                type: DataTypes.DATE,
+            }
 }, {
     freezeTableName: true,
     timestamps: false
 });
+
+
+// const OTPLogs = db.define('otp_logs', {
+//     id: {
+//         autoIncrement: true,
+//         primaryKey: true,
+//         type: DataTypes.INTEGER,
+//     },
+//     email: {
+//         type: DataTypes.STRING
+//     },
+//     otp: {
+//         type: DataTypes.STRING
+//     },
+//     created: {
+//         type: DataTypes.DATE,
+//         defaultValue: Sequelize.NOW
+//     },
+//     last_login: {
+//         type: DataTypes.DATE,
+//         defaultValue: Sequelize.NOW
+//     }
+// }, {
+//     freezeTableName: true,
+//     timestamps: false
+// });
 
 // db.sync().then(() => {
 //    console.log('Table created successfully!');

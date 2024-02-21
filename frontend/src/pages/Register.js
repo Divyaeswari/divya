@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import Header from './commonHeader';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 //import RegisterDB from "../../../backend/models/RegisterModel";
 
 const Register = (props) => {
@@ -15,8 +18,19 @@ const Register = (props) => {
     const [passwordError, setPasswordError] = useState("");
     const [repeatPasswordError, setrepeatPasswordError] = useState("");
     const [phoneNumberError, setPhoneNumberError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
     const navigate =  useNavigate();
+    const isAuthenticated = false;
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const toggleRepeatPasswordVisibility = () => {
+        setShowRepeatPassword(!showRepeatPassword);
+    };
 
     const onButtonClick = async () => {
         // const api = await fetch('http://localhost:5000/register',{ method: "GET", mode: 'cors', headers: { 'Content-Type': 'application/json',}});
@@ -99,15 +113,35 @@ const Register = (props) => {
                 });
         
                 if (response.ok) {
+                    if(response.status == 200)
+                    {
+                
                     withReactContent(Swal).fire({
-						text: 'Message!',
-						title: response.message,           
-                      })
-                    navigate("/login");
+                        title: 'Success!',
+                        text: 'Registration successfully Done!',           
+                      }).then(function() {
+                            navigate("/login");
+                      });
+                    }else if(response.status == 500)
+                    {
+                        withReactContent(Swal).fire({
+                            title: 'Error!',
+                            text: 'Internal server error.',           
+                          }).then(function() {
+                                navigate("/home");
+                          });
+                    }
                 } else {
                     // Handle error response
                     const data = await response.json();
                     console.error('Registration failed:', data.error);
+
+                    withReactContent(Swal).fire({
+                        title: 'Error!',
+                        text: 'Registration failed.',           
+                      }).then(function() {
+                            navigate("/register");
+                      });
                 }
             } catch (error) {
                 console.error('Error registering user:', error);
@@ -116,7 +150,10 @@ const Register = (props) => {
 
     };
 
-    return <div className="mainContainer">
+    return (
+        <div>
+        <Header isAuthenticated={isAuthenticated} />
+        <div className="mainContainer">
         <div className="card_regis">
         <div className="card_content">
         <div className="titleContainer">
@@ -133,7 +170,7 @@ const Register = (props) => {
         <div className="inputContainer">
             <input  value={email} id="myInput" placeholder="Enter Your Email Here" onChange={ev => setEmail(ev.target.value)} className={"inputBox"} />
             <label id="myInput-label">Enter Your Email Here</label>
-            <label className="errorLabel">{emailError}</label>
+                <label className="errorLabel">{emailError}</label>
         </div>
         <br/>
         <div className="inputContainer">
@@ -143,13 +180,15 @@ const Register = (props) => {
         </div>
         <br/>
         <div className="inputContainer">
-            <input  value={password} id="myInput" placeholder="Enter Your Password Here" onChange={ev => setPassword(ev.target.value)} className={"inputBox"} />
+            <input  value={password} id="myInput" type={showPassword ? "text" : "password"} placeholder="Enter Your Password Here" onChange={ev => setPassword(ev.target.value)} className={"inputBox"} />
+            <i className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-icon`} onClick={togglePasswordVisibility} />
             <label id="myInput-label">Enter Your Password Here</label>
             <label className="errorLabel">{passwordError}</label>
         </div>
         <br/>
         <div className="inputContainer">
-            <input  value={repeatPassword} id="myInput" placeholder="Repeat The Password Here" onChange={ev => setrepeatPassword(ev.target.value)} className={"inputBox"} />
+            <input  value={repeatPassword} id="myInput" type={showRepeatPassword ? "text" : "password"} placeholder="Repeat The Password Here" onChange={ev => setrepeatPassword(ev.target.value)} className={"inputBox"} />
+            <i className={`fa ${showRepeatPassword ? 'fa-eye-slash' : 'fa-eye'} password-icon`} onClick={toggleRepeatPasswordVisibility} />
             <label id="myInput-label">Repeat The Password Here</label>
             <label className="errorLabel">{repeatPasswordError}</label>
         </div>
@@ -163,6 +202,8 @@ const Register = (props) => {
         </div>
         </div>
     </div>
+    </div>
+    )
 }
 
 export default Register
