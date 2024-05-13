@@ -21,6 +21,12 @@ const RegisterDB = db.define('register', {
     phoneno: {
         type: DataTypes.STRING
     },
+    dateOfBirth: {
+        type: DataTypes.STRING
+    },
+    role: {
+        type: DataTypes.STRING
+    },
     created: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.NOW

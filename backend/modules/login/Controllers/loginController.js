@@ -67,13 +67,13 @@ export const loginUser = async (req, res) => {
        
 
         if (passwordMatch) { 
-            const user = {email: checkEmailExists.email, id: checkEmailExists.id, name:checkEmailExists.username};
+            const user = {email: checkEmailExists.email, id: checkEmailExists.id, name:checkEmailExists.username, role:checkEmailExists.role};
 
             const sessData = req.session = user;
 
             console.log(sessData)
-            const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, { expiresIn: '1h' });
-            res.status(200).json({ success: 'Login successfully!',user: sessData, token: token});
+            //const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+            res.status(200).json({ success: 'Login successfully!',user: sessData});
         }
         else{
             res.status(401).json({ error: 'Incorrect password. Please try again.' });

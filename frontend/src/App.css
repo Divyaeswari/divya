@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 105vh;
+  height: 100vh;
 }
 
 .titleContainer {
@@ -43,6 +43,7 @@
   border-radius: 8px;
   border: 1px solid grey;
   padding-left: 8px;
+  margin-left: 10px;
 }
 
 .resultContainer, .historyItem { 
@@ -130,7 +131,7 @@
   color: cornflowerblue;
   font-weight: bold;
   font-family: "Raleway", sans-serif;
-  font-size: 15px;
+  font-size: 20px;
   margin-top: 16px;
   text-align: center;
 }
@@ -146,9 +147,9 @@
   background: #fbfbfb;
   border-radius: 8px;
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
-  height: 630px;
-  margin: 6rem auto 8.1rem auto;
-  width: 440px;
+  height: 700px;
+  margin: 4% auto 8.1rem auto;
+  width: 75%;
 }
 
 .underline_title_regis {
@@ -197,4 +198,197 @@
 /* .menu-item a:visited {
   color: green;
 } */
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-picture {
+  width: 80px; 
+  height: 80px;
+  border-radius: 50%; 
+  margin-right: 30px;
+}
+
+
+/* Register New */
+
+/* Styles for the left section */
+.leftSection {
+  float: left;
+  width: 50%; 
+  padding: 20px;
+  background-color: #12223D;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top-left-radius:15px;
+  border-bottom-left-radius:15px;
+}
+
+
+.leftSection h1 {
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+}
+
+.leftSection p {
+  font-size: 30px;
+  color: #fff;
+  text-align: center; 
+}
+
+.leftSection button {
+  padding: 17px 91px;
+  font-size: 30px;
+  background-color: #12223D;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 50px;
+  width:50%;
+  margin-left: 175px;
+}
+
+.leftSection button:hover {
+  background-color: #12223D; 
+}
+
+/* Styles for the right section */
+.rightSection {
+  float: right;
+  width: 50%;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.rightSection .card_title1 {
+  font-size: 50px;
+  color: #12223D;
+}
+
+.rightSection .underline_title_regis {
+  width: 100px; 
+  height: 3px; 
+  background-color: #007bff;
+}
+
+.rightSection .inputContainer {
+  margin-bottom: 20px;
+}
+
+/* .rightSection input[type="text"],
+.rightSection input[type="email"],
+.rightSection input[type="password"],
+.rightSection input[type="button"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+} */
+
+.rightSection input[type="button"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.rightSection input[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+.icon-container {
+  margin-right:5px;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 100%;
+  padding:15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.fa-google {
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.fa-facebook-f {
+  margin-left:5px;
+  background-color: #1976D2;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.fa-linkedin-in {
+  margin-left:3px;
+  background-color: #0077B5;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-container i {
+  position: absolute;
+  left: 170px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.input-container input {
+  margin-left: 150px;
+  padding-left: 50px;
+  width: 50%;
+  height: 60px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #E6E6E6;
+}
+
+.input-container input:focus {
+  outline: none;
+  border-color: #6c63ff;
+}
+
+.manual{
+  margin-left: 180px;
+  color:#888;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.input-container button {
+  padding: 17px 91px;
+  font-size: 30px;
+  background-color: #12223D !important;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 50px;
+  margin-left: 175px;
+}
+
+
+
+
 

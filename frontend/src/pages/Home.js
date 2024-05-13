@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Header from './commonHeader';
+import Header from "../components/navbar/commonHeader";
 
 const Home = (props) => {
     const { loggedIn, email } = props;

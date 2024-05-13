@@ -1,12 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import RegisterPage from "./pages/Register";
+import Login from "./views/Login";
+import RegisterPage from "./views/RegisterNew";
 import MainPage from "./pages/MainPage";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
-import Header from "./pages/commonHeader";
-import Logout from "./pages/Logout";
+import ForgotPassword from "./views/ForgotPassword";
+import ResetPassword from "./views/ResetPassword";
+import Header from "./components/navbar/commonHeader";
+import Logout from "./views/Logout";
+import AdminDashboard from "./layouts/Admin";
+import UserDashboard from "./layouts/User";
 //import ResetPassword
 import './App.css';
 import { useEffect,useState } from "react";
@@ -20,6 +22,9 @@ function App() {
   //const [OTPInput, setOTPInput] = useState(false);
   const [email, setEmail] = useState("");
 
+  const [adminPage, setAdminPage] = useState(false);
+  const [userPage, setUserPage] = useState(false);
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -32,6 +37,8 @@ function App() {
         <Route path="/forgot_password" element={<ForgotPassword forgotPassword={forgotPassword} setForgotPassword={setForgotPassword} />} />
         <Route path="/reset_password" element={<ResetPassword resetPassword={resetPassword} setResetPassword={setResetPassword} />} /> 
         <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} setEmail={setEmail} />} /> 
+        <Route path="/admin_page" element={<AdminDashboard adminPage={adminPage} setAdminPage={setAdminPage} />} />
+        <Route path="/user_page" element={<UserDashboard userPage={userPage} setUserPage={setUserPage} />} />
       </Routes>
       </BrowserRouter>
     </div>

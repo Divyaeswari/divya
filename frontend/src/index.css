@@ -36,6 +36,7 @@ input[type="button"] {
     font-size: 24px;
     border-radius: 8px;
     cursor: pointer;
+    width: 50%;
 }
 
 #myInput:focus::-webkit-input-placeholder {
@@ -57,10 +58,20 @@ input[type="button"] {
   color:dodgerblue;
   font-family:sans-serif;
   background-color: #fff;
-  padding: 0 3px;
+  padding: 0 5px;
+  padding-left: 20px;
 }
 
 
+#myInput-label1 {
+  display: none;
+  font-size: 11px;
+  color: dodgerblue;
+  font-family: sans-serif;
+  background-color: #fff;
+  padding: 0 5px;
+  padding-left: 20px;
+}
 
 /*style of label when input is focused*/
 #myInput:focus + #myInput-label  {
@@ -70,11 +81,46 @@ input[type="button"] {
   top:-5px;
 }
 
+#myInpu1t:focus + #myInput-label1 {
+  display: block;
+}
+
+#myInput1:focus::-webkit-input-placeholder {
+  visibility: hidden; /* Hide placeholder on focus */
+}
+
+#myInput1 {
+  padding: 5px;
+}
+
+#myInput1:focus {
+  border: 1px solid dodgerblue;
+  border-radius: 3px;
+}
+
+/*style of label when input is focused*/
+#myInput1:focus + #myInput-label1  {
+  display: inline-block;
+  position:absolute;
+  right: 295px;
+  top:-5px;
+}
+
 .password-icon {
   position: absolute;
   top: 50%;
-  right: 10px; /* Adjust the distance from the right side */
+  right: 40px; /* Adjust the distance from the right side */
   transform: translateY(-50%);
   cursor: pointer;
   color: blue;
+}
+
+.password-icon1 {
+  position: absolute;
+  top: 50%;
+  /* right: 10px; */
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: blue;
+  left:400px;
 }

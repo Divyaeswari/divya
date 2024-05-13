@@ -17,6 +17,8 @@ export const ResetPassword = async (req, res) => {
     const { email, otp, password } = req.body;
 
     try {
+
+        const hashedPassword = await bcrypt.hash(password, 10);
         // Retrieve OTP details from the database
         const otpDetails = await OTPLogs.findOne({
             where: { email: email,otp: otp }
@@ -39,7 +41,7 @@ export const ResetPassword = async (req, res) => {
         }
         else{
             const updatedPassword = await RegisterDB.update(
-                { password: password},
+                { password: hashedPassword},
                 { where: { email: email } }
             );
             return res.status(200).json({ success: 'Password reset successful' });

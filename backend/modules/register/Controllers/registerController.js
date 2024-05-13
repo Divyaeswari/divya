@@ -15,7 +15,7 @@ const Op = sequelize.Op;
 //const { create } = RegisterDB;
 
 export const registerUser = async (req, res) => {
-    const { username, email, password, phoneno } = req.body;
+    const { username, email, password, phoneno, dateOfBirth } = req.body;
 
     console.log('req.body');
     console.log(req.body);
@@ -47,6 +47,8 @@ export const registerUser = async (req, res) => {
             email: email,
             password: hashedPassword,
             phoneno: phoneno,
+            dateOfBirth: dateOfBirth,
+            role: 'user'
         }); 
         console.log(newRegistration.toJSON());
 

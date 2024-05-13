@@ -1,6 +1,8 @@
 import express from "express";
 import { loginUser } from "./Controllers/loginController.js";
 import session from 'express-session';
+import { verifyToken } from "../../middleware/VerifyToken.js";
+import { refreshToken } from "../../middleware/RefreshToken.js";
 const app = express();
 // app.use(session({
 //     secret: 'divya',
@@ -17,8 +19,10 @@ const app = express();
 // }));
 // const app = express();
 const router = express.Router();
+//router.get('/refresh', refreshToken);
 
 
+//router.post('/loginUser', verifyToken, loginUser);
 router.post('/loginUser', loginUser);
 
 //  router.get('/loginUser', (req,res)=> {
